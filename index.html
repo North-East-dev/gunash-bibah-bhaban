@@ -5,105 +5,133 @@
 <title>Gunash Padmawati Bibha Bhaban</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Elegant Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
-/* GLOBAL */
+:root {
+  --primary: #5b2b82;
+  --secondary: #8e44ad;
+}
+
+/* DYNAMIC BACKGROUND */
 body {
   margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(180deg, #f7f5f2, #ffffff);
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #f5effa, #ffffff);
   color: #333;
-  line-height: 1.6;
+  line-height: 1.7;
+  transition: background 0.6s ease;
 }
 
 /* HERO */
 header {
-  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+  background: linear-gradient(rgba(91,43,130,0.7), rgba(0,0,0,0.6)),
               url('https://images.unsplash.com/photo-1529634899401-3c3e5a0a9f1c');
   background-size: cover;
   background-position: center;
   color: white;
   text-align: center;
-  padding: 100px 20px;
+  padding: 110px 20px;
 }
 
 header h1 {
-  font-size: 38px;
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
   margin-bottom: 10px;
-  letter-spacing: 1px;
   animation: fadeDown 1s ease;
 }
 
 header p {
   font-size: 18px;
-  margin-bottom: 30px;
-  animation: fadeDown 1.3s ease;
+  opacity: 0.95;
+  margin-bottom: 35px;
 }
 
 /* BUTTON */
 .btn {
-  background: #8b0000;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
-  padding: 14px 32px;
-  border-radius: 6px;
+  padding: 15px 36px;
+  border-radius: 30px;
   font-size: 16px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  animation: fadeUp 1.6s ease;
+  transition: all 0.35s ease;
 }
 
 .btn:hover {
-  background: #a40000;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(91,43,130,0.4);
 }
 
 /* SECTIONS */
 section {
-  max-width: 1000px;
-  margin: 50px auto;
-  padding: 60px 30px;
+  max-width: 1050px;
+  margin: 60px auto;
+  padding: 70px 35px;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
 }
 
-/* HEADINGS */
 h2 {
+  font-family: "Playfair Display", serif;
   text-align: center;
-  margin-bottom: 30px;
-  color: #8b0000;
+  font-size: 30px;
+  margin-bottom: 35px;
+  color: var(--primary);
 }
 
 /* FEATURES */
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
   text-align: center;
 }
 
 .box {
-  padding: 25px;
-  border-radius: 10px;
-  background: #fafafa;
+  padding: 30px 20px;
+  border-radius: 14px;
+  background: #faf8ff;
   border: 1px solid #eee;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.35s ease;
 }
 
 .box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* REVIEWS */
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.review {
+  background: #faf8ff;
+  padding: 25px;
+  border-radius: 14px;
+  font-size: 14px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+}
+
+.review strong {
+  display: block;
+  margin-top: 12px;
+  color: var(--primary);
 }
 
 /* FOOTER */
 footer {
-  background: #111;
-  color: #ccc;
+  background: linear-gradient(135deg, #2d143f, #14001f);
+  color: #ddd;
   text-align: center;
-  padding: 25px;
+  padding: 35px;
   font-size: 14px;
-  margin-top: 60px;
 }
 
 /* MODAL */
@@ -111,24 +139,22 @@ footer {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(5px);
   z-index: 1000;
 }
 
 .modal-content {
-  background: #fff;
+  background: white;
   max-width: 420px;
   margin: 8% auto;
   padding: 30px;
-  border-radius: 14px;
+  border-radius: 18px;
   animation: scaleIn 0.4s ease;
 }
 
 .modal-content h2 {
-  text-align: center;
   margin-bottom: 20px;
-  color: #8b0000;
 }
 
 .modal-content input,
@@ -136,24 +162,18 @@ footer {
   width: 100%;
   padding: 12px;
   margin-bottom: 14px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 14px;
 }
 
 .modal-content button {
   width: 100%;
-  background: #8b0000;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
-  padding: 12px;
+  padding: 13px;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 25px;
   cursor: pointer;
-}
-
-.modal-content button:hover {
-  background: #a40000;
 }
 
 .close {
@@ -162,11 +182,11 @@ footer {
   cursor: pointer;
 }
 
-/* SCROLL ANIMATION */
+/* SCROLL REVEAL */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: all 0.8s ease;
+  transition: all 0.9s ease;
 }
 
 .reveal.active {
@@ -174,14 +194,9 @@ footer {
   transform: translateY(0);
 }
 
-/* KEYFRAMES */
+/* ANIMATIONS */
 @keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(-25px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -196,46 +211,67 @@ footer {
 
 <header>
   <h1>Gunash Padmawati Bibha Bhaban</h1>
-  <p>An Elegant Venue for Weddings & Celebrations</p>
+  <p>An Elegant & Graceful Venue for Weddings, Receptions & Celebrations</p>
   <button class="btn" onclick="openModal()">Check Availability</button>
 </header>
 
 <section class="reveal">
   <h2>About the Hall</h2>
-  <p style="text-align:center;">
-    Gunash Padmawati Bibha Bhaban is a spacious and well-designed marriage hall,
-    ideal for weddings, receptions, and family functions.
+  <p style="text-align:center; max-width:800px; margin:auto;">
+    Gunash Padmawati Bibha Bhaban is a premium marriage and event venue designed
+    to host life’s most cherished moments. With spacious interiors, refined
+    aesthetics, and a warm atmosphere, we offer the perfect setting for weddings,
+    receptions, anniversaries, and family celebrations.
   </p>
 </section>
 
 <section class="reveal">
-  <h2>Facilities</h2>
+  <h2>Facilities & Amenities</h2>
   <div class="features">
-    <div class="box">Large Seating Capacity</div>
-    <div class="box">Spacious Stage Area</div>
-    <div class="box">Power Backup</div>
-    <div class="box">Parking Facility</div>
-    <div class="box">Decoration Friendly</div>
-    <div class="box">Suitable for All Events</div>
+    <div class="box">Grand Seating Capacity</div>
+    <div class="box">Spacious & Elevated Stage</div>
+    <div class="box">Reliable Power Backup</div>
+    <div class="box">Ample Parking Space</div>
+    <div class="box">Decoration-Friendly Layout</div>
+    <div class="box">Ideal for All Celebrations</div>
+  </div>
+</section>
+
+<section class="reveal">
+  <h2>What Our Guests Say</h2>
+  <div class="reviews">
+    <div class="review">
+      “Beautiful hall with excellent space and arrangements. Our wedding
+      ceremony was smooth and memorable.”
+      <strong>— Wedding Family</strong>
+    </div>
+    <div class="review">
+      “Clean, spacious, and very well managed. Highly recommended for large
+      gatherings.”
+      <strong>— Local Client</strong>
+    </div>
+    <div class="review">
+      “Perfect venue for family functions. The ambience feels premium.”
+      <strong>— Event Guest</strong>
+    </div>
   </div>
 </section>
 
 <section class="reveal">
   <h2>Location</h2>
-  <div style="border-radius:14px; overflow:hidden;">
+  <div style="border-radius:18px; overflow:hidden;">
     <iframe
       src="https://www.google.com/maps?q=Gunash%20Padmawati%20Bibha%20Bhaban&output=embed"
       width="100%"
-      height="350"
+      height="360"
       style="border:0;"
-      allowfullscreen
       loading="lazy">
     </iframe>
   </div>
 </section>
 
 <footer>
-  © 2026 Gunash Padmawati Bibha Bhaban. All Rights Reserved.
+  © 2026 Gunash Padmawati Bibha Bhaban · Crafted with Care
 </footer>
 
 <!-- BOOKING MODAL -->
@@ -273,12 +309,20 @@ function revealOnScroll() {
   const windowHeight = window.innerHeight;
 
   reveals.forEach(el => {
-    const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 100) {
+    if (el.getBoundingClientRect().top < windowHeight - 120) {
       el.classList.add("active");
     }
   });
 }
+
+/* GRADIENT SHIFT ON SCROLL */
+window.addEventListener("scroll", () => {
+  const scroll = window.scrollY;
+  document.body.style.background =
+    `linear-gradient(180deg,
+     rgb(${245 - scroll/30}, ${239 - scroll/40}, 250),
+     #ffffff)`;
+});
 
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
