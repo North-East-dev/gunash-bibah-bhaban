@@ -5,7 +5,7 @@
 <title>Gunash Padmawati Bibha Bhaban</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Elegant Fonts -->
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -14,7 +14,7 @@
   --secondary: #8e44ad;
 }
 
-/* RESET */
+/* GLOBAL */
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -23,17 +23,17 @@ body {
   line-height: 1.7;
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 999;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 14px 40px;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
@@ -47,8 +47,8 @@ body {
   list-style: none;
   display: flex;
   gap: 22px;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
@@ -70,29 +70,27 @@ body {
   cursor: pointer;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 header {
   background: linear-gradient(rgba(91,43,130,0.7), rgba(0,0,0,0.6)),
-              url('https://images.unsplash.com/photo-1529634899401-3c3e5a0a9f1c');
+              url("https://images.unsplash.com/photo-1529634899401-3c3e5a0a9f1c");
   background-size: cover;
   background-position: center;
-  color: white;
   text-align: center;
+  color: white;
   padding: 120px 20px;
 }
 
 header h1 {
   font-family: "Playfair Display", serif;
   font-size: 42px;
-  margin-bottom: 10px;
 }
 
 header p {
   font-size: 18px;
-  margin-bottom: 35px;
+  margin: 20px 0 35px;
 }
 
-/* BUTTON */
 .btn {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
@@ -102,7 +100,7 @@ header p {
   cursor: pointer;
 }
 
-/* ================= SECTIONS ================= */
+/* SECTIONS */
 section {
   max-width: 1050px;
   margin: 70px auto;
@@ -116,22 +114,123 @@ h2 {
   font-family: "Playfair Display", serif;
   text-align: center;
   font-size: 30px;
-  margin-bottom: 35px;
   color: var(--primary);
+  margin-bottom: 35px;
 }
 
-/* FEATURES */
+/* AMENITIES */
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
-  text-align: center;
 }
 
 .box {
-  padding: 30px;
-  border-radius: 14px;
   background: #faf8ff;
+  padding: 28px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+/* EXPERIENCES */
+.exp-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.exp-tab {
+  background: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  color: #555;
+  padding: 8px 18px;
+  position: relative;
+}
+
+.exp-tab.active {
+  color: var(--primary);
+}
+
+.exp-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 20%;
+  width: 60%;
+  height: 2px;
+  background: var(--primary);
+}
+
+.exp-panel {
+  display: none;
+}
+
+.exp-panel.active {
+  display: block;
+}
+
+/* REVIEWS */
+.reviews-mosaic {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 26px;
+}
+
+.review-card {
+  background: #faf8ff;
+  padding: 26px;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+  font-size: 14px;
+}
+
+.review-card.large {
+  grid-column: span 2;
+}
+
+.review-card.tall {
+  grid-row: span 2;
+}
+
+.review-card strong {
+  display: block;
+  margin-top: 14px;
+  color: var(--primary);
+}
+
+/* EVENTS */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.event-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 35px rgba(0,0,0,0.1);
+}
+
+.event-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.event-info {
+  padding: 18px;
+}
+
+.event-info span {
+  font-size: 12px;
+  color: var(--primary);
+}
+
+.event-info p {
+  margin-top: 6px;
 }
 
 /* FOOTER */
@@ -140,17 +239,15 @@ footer {
   color: #ddd;
   text-align: center;
   padding: 35px;
-  font-size: 14px;
 }
 
-/* ================= MODAL ================= */
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.65);
   backdrop-filter: blur(5px);
-  z-index: 1000;
 }
 
 .modal-content {
@@ -171,10 +268,9 @@ footer {
 
 <body>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <nav class="navbar">
   <div class="nav-brand">Gunash Padmawati Bibha Bhaban</div>
-
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#venue">Venue</a></li>
@@ -183,7 +279,6 @@ footer {
     <li><a href="#calendar">Calendar</a></li>
     <li><a href="#location">Location</a></li>
   </ul>
-
   <button class="nav-cta" onclick="openModal()">Enquire</button>
 </nav>
 
@@ -194,16 +289,14 @@ footer {
   <button class="btn" onclick="openModal()">Check Availability</button>
 </header>
 
-<!-- VENUE -->
 <section id="venue">
   <h2>Venue Overview</h2>
-  <p style="text-align:center; max-width:800px; margin:auto;">
-    Gunash Padmawati Bibha Bhaban is a premium venue designed for life’s most
-    meaningful celebrations, combining space, elegance, and comfort.
+  <p style="text-align:center;max-width:800px;margin:auto;">
+    A premium venue crafted for refined celebrations, combining elegance,
+    comfort, and thoughtful design.
   </p>
 </section>
 
-<!-- AMENITIES -->
 <section id="amenities">
   <h2>Amenities</h2>
   <div class="features">
@@ -212,46 +305,81 @@ footer {
     <div class="box">Power Backup</div>
     <div class="box">Parking Space</div>
     <div class="box">Decoration Friendly</div>
-    <div class="box">Suitable for All Events</div>
+    <div class="box">All Event Support</div>
   </div>
 </section>
 
-<!-- EXPERIENCES (SKELETON) -->
 <section id="experiences">
   <h2>Experiences</h2>
-  <!-- Guest Voices + Past Events will be implemented in Phase B -->
+
+  <div class="exp-tabs">
+    <button class="exp-tab active" onclick="switchExperience('reviews')">Guest Voices</button>
+    <button class="exp-tab" onclick="switchExperience('events')">Past Experiences</button>
+  </div>
+
+  <div id="exp-reviews" class="exp-panel active">
+    <div class="reviews-mosaic">
+      <div class="review-card large">
+        “The ambience felt refined and welcoming. Our guests still talk about the venue.”
+        <strong>Wedding · 2024</strong>
+      </div>
+      <div class="review-card">
+        “Beautifully managed venue with calm coordination.”
+        <strong>Reception · 2023</strong>
+      </div>
+      <div class="review-card tall">
+        “Everything felt premium and thoughtfully designed.”
+        <strong>Celebration · 2024</strong>
+      </div>
+      <div class="review-card">
+        “Spacious, elegant, and comfortable for guests.”
+        <strong>Family Event · 2022</strong>
+      </div>
+    </div>
+  </div>
+
+  <div id="exp-events" class="exp-panel">
+    <div class="events-grid">
+      <div class="event-card">
+        <img src="https://images.unsplash.com/photo-1529634899401-3c3e5a0a9f1c">
+        <div class="event-info">
+          <span>Wedding · Jan 2024</span>
+          <p>Congratulations to the Sharma family.</p>
+        </div>
+      </div>
+      <div class="event-card">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+        <div class="event-info">
+          <span>Reception · Nov 2023</span>
+          <p>Wishing the Das family a lifetime of happiness.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- CALENDAR (SKELETON) -->
 <section id="calendar">
   <h2>Availability</h2>
-  <!-- Calendar system will be implemented in Phase C -->
 </section>
 
-<!-- LOCATION -->
 <section id="location">
   <h2>Location</h2>
-  <iframe
-    src="https://www.google.com/maps?q=Gunash%20Padmawati%20Bibha%20Bhaban&output=embed"
-    width="100%" height="360" style="border:0;" loading="lazy">
-  </iframe>
+  <iframe src="https://www.google.com/maps?q=Gunash%20Padmawati%20Bibha%20Bhaban&output=embed"
+    width="100%" height="360" style="border:0;" loading="lazy"></iframe>
 </section>
 
 <footer>
   © 2026 Gunash Padmawati Bibha Bhaban · Crafted with Care
 </footer>
 
-<!-- BOOKING MODAL -->
 <div id="bookingModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
     <h2>Booking Enquiry</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="tel" placeholder="Phone Number" required>
-      <textarea placeholder="Event Details (optional)"></textarea>
-      <button type="submit">Submit Enquiry</button>
-    </form>
+    <input type="text" placeholder="Your Name">
+    <input type="tel" placeholder="Phone Number">
+    <textarea placeholder="Event Details (optional)"></textarea>
+    <button class="btn">Submit Enquiry</button>
   </div>
 </div>
 
@@ -261,6 +389,17 @@ function openModal() {
 }
 function closeModal() {
   document.getElementById("bookingModal").style.display = "none";
+}
+function switchExperience(type) {
+  document.querySelectorAll(".exp-tab").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".exp-panel").forEach(p => p.classList.remove("active"));
+  if (type === "reviews") {
+    document.querySelectorAll(".exp-tab")[0].classList.add("active");
+    document.getElementById("exp-reviews").classList.add("active");
+  } else {
+    document.querySelectorAll(".exp-tab")[1].classList.add("active");
+    document.getElementById("exp-events").classList.add("active");
+  }
 }
 </script>
 
