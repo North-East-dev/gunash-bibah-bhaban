@@ -13,7 +13,7 @@
 :root {
   --primary: #5b2b82;
   --primary-light: #7a3fa8;
-  --secondary: #d4af37; /* Premium Gold Accent */
+  --secondary: #d4af37;
   --soft-bg: #faf8ff;
   --dark-bg: #2d143f;
   --text-main: #333;
@@ -36,7 +36,6 @@ body {
 body.modal-open { overflow: hidden; }
 
 /* ================= ANIMATIONS ================= */
-/* Fade Up Reveal */
 .fade-up {
   opacity: 0;
   transform: translateY(30px);
@@ -44,13 +43,11 @@ body.modal-open { overflow: hidden; }
 }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-/* Stagger Delays */
 .stagger-1 { transition-delay: 0.1s; }
 .stagger-2 { transition-delay: 0.2s; }
 .stagger-3 { transition-delay: 0.3s; }
 .stagger-4 { transition-delay: 0.4s; }
 
-/* Hero Zoom Effect */
 @keyframes kenBurns {
   0% { transform: scale(1); }
   100% { transform: scale(1.1); }
@@ -76,7 +73,7 @@ body.modal-open { overflow: hidden; }
   font-size: 22px;
   font-weight: 700;
   color: var(--primary);
-  letter-spacing: -0.5px;
+  text-decoration: none;
 }
 
 .nav-links {
@@ -88,7 +85,6 @@ body.modal-open { overflow: hidden; }
   text-decoration: none; color: #444; font-size: 14px; font-weight: 500;
   position: relative; transition: 0.3s;
 }
-/* Gold Underline Animation */
 .nav-links a::after {
   content: ""; position: absolute; left: 0; bottom: -4px;
   width: 0; height: 2px; background: var(--secondary); transition: 0.3s ease;
@@ -165,30 +161,6 @@ h2::after {
   background: var(--secondary); margin: 15px auto 0;
 }
 
-/* ================= GALLERY GRID (MERGED) ================= */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-}
-.gallery-item {
-  position: relative; overflow: hidden; border-radius: 20px;
-  height: 280px; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-.gallery-item img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.gallery-item:hover img { transform: scale(1.1); }
-.gallery-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  opacity: 0; transition: 0.3s;
-  display: flex; align-items: flex-end; padding: 25px;
-  color: white; font-weight: 500; font-family: "Playfair Display"; letter-spacing: 1px;
-}
-.gallery-item:hover .gallery-overlay { opacity: 1; }
-
 /* ================= AMENITIES ================= */
 .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
 .box {
@@ -199,7 +171,13 @@ h2::after {
 .box:hover { transform: translateY(-8px); border-color: rgba(91,43,130,0.1); box-shadow: var(--shadow-hover); color: var(--primary); }
 
 /* ================= EXPERIENCES ================= */
-.exp-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 50px; background: #f4eff9; width: fit-content; margin: auto; padding: 6px; border-radius: 50px; }
+.exp-tabs {
+  display: flex; justify-content: center; gap: 10px;
+  /* INCREASED MARGIN HERE TO FIX SPACING ISSUE */
+  margin-bottom: 80px; 
+  background: #f4eff9; width: fit-content; margin-left: auto; margin-right: auto;
+  padding: 6px; border-radius: 50px;
+}
 .exp-tab { background: none; border: none; font-size: 15px; cursor: pointer; color: #666; padding: 10px 24px; border-radius: 40px; transition: 0.3s; }
 .exp-tab.active { background: white; color: var(--primary); font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 
@@ -233,7 +211,7 @@ h2::after {
 /* ================= FOOTER ================= */
 footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #ccc; text-align: center; padding: 60px 20px; margin-top: 80px; }
 
-/* ================= MODAL (FIXED HEADER) ================= */
+/* ================= MODAL ================= */
 .modal {
   display: none; position: fixed; inset: 0;
   background: rgba(45, 20, 63, 0.75); backdrop-filter: blur(8px);
@@ -249,10 +227,8 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
 }
 .modal.active .modal-content { transform: translateY(0); }
 
-/* Header with Close Button */
-.modal-header {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;
-}
+/* Modal Header with fixed X button */
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
 .modal-header h2 { margin: 0; font-size: 24px; color: var(--text-main); text-align: left; }
 
 .close-btn {
@@ -284,10 +260,11 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
 
 <!-- NAVBAR -->
 <nav class="navbar">
-  <div class="nav-brand">Gunash Padmawati Bibha Bhaban</div>
+  <a href="index.html" class="nav-brand">Gunash Padmawati Bibha Bhaban</a>
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
-    <li><a href="#gallery">Gallery</a></li>
+    <!-- LINK TO DEDICATED PAGE -->
+    <li><a href="gallery.html">Gallery</a></li>
     <li><a href="#venue">Venue</a></li>
     <li><a href="#amenities">Amenities</a></li>
     <li><a href="#experiences">Experiences</a></li>
@@ -313,40 +290,6 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
       A premium venue crafted for refined celebrations, combining elegance, comfort, and thoughtful design.
       Whether it is a grand wedding or an intimate reception, our space transforms to match your vision.
     </p>
-  </div>
-</section>
-
-<!-- GALLERY SECTION (MERGED) -->
-<section id="gallery">
-  <div class="section-card fade-up">
-    <h2>Photo Gallery</h2>
-    <div class="gallery-grid">
-      <!-- REPLACE WITH YOUR IMAGES -->
-      <div class="gallery-item stagger-1">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600" alt="Decor">
-        <div class="gallery-overlay">Exquisite Decor</div>
-      </div>
-      <div class="gallery-item stagger-2">
-        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=600" alt="Entrance">
-        <div class="gallery-overlay">Grand Entrance</div>
-      </div>
-      <div class="gallery-item stagger-3">
-        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600" alt="Seating">
-        <div class="gallery-overlay">Seating Area</div>
-      </div>
-      <div class="gallery-item stagger-4">
-        <img src="https://images.unsplash.com/photo-1507915977619-6ccfe8003ae6?q=80&w=600" alt="Stage">
-        <div class="gallery-overlay">Royal Stage</div>
-      </div>
-      <div class="gallery-item stagger-1">
-        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af0bc3?q=80&w=600" alt="Catering">
-        <div class="gallery-overlay">Dining Area</div>
-      </div>
-      <div class="gallery-item stagger-2">
-        <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=600" alt="Lighting">
-        <div class="gallery-overlay">Evening Ambience</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -432,7 +375,6 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
 <div id="bookingModal" class="modal">
   <div class="modal-content">
     
-    <!-- FIXED HEADER WITH CLOSE BUTTON -->
     <div class="modal-header">
       <h2>Booking Enquiry</h2>
       <button class="close-btn" onclick="closeModal()">&times;</button>
@@ -451,7 +393,7 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
       <button id="continueBtn" class="btn disabled" style="width:100%">Continue to Dates</button>
     </div>
 
-    <!-- STEP 2: Dates (With Custom Option) -->
+    <!-- STEP 2: Dates -->
     <div id="step2" style="display:none;">
       <label class="modal-label">Duration</label>
       <select id="daysSelect">
@@ -462,19 +404,16 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
         <option value="custom">Custom...</option>
       </select>
 
-      <!-- HIDDEN CUSTOM INPUT -->
       <div id="customDaysDiv" style="display:none;">
         <label class="modal-label">Enter Number of Days</label>
         <input type="number" id="customDaysInput" placeholder="e.g. 7" min="1" max="30">
       </div>
 
-      <!-- Single Date Picker -->
       <div id="singleDate">
         <label class="modal-label">Event Date</label>
         <input type="date" id="dateSingle">
       </div>
 
-      <!-- Range Date Picker -->
       <div id="rangeDate" style="display:none;">
         <div style="display:flex; gap:15px;">
           <div style="flex:1;">
@@ -537,7 +476,6 @@ function closeModal() {
   }, 300);
 }
 
-// Close on Escape or Outside Click
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 bookingModal.addEventListener("click", (e) => { if (e.target === bookingModal) closeModal(); });
 
@@ -589,16 +527,12 @@ dateFrom.min = today;
 
 function updateDateViews() {
   const val = daysSelect.value;
-  
-  // Toggle Custom Input
   if (val === "custom") {
     customDaysDiv.style.display = "block";
     customDaysInput.focus();
   } else {
     customDaysDiv.style.display = "none";
   }
-
-  // Toggle Date Pickers
   let isSingle = (val === "1");
   if (isSingle) {
     singleDate.style.display = "block";
@@ -617,12 +551,10 @@ function calculateEndDate() {
   } else {
     days = parseInt(daysSelect.value, 10);
   }
-
   if (!days || days < 1 || !dateFrom.value) {
     dateTo.value = "";
     return;
   }
-
   const fromDate = new Date(dateFrom.value);
   const toDate = new Date(fromDate);
   toDate.setDate(fromDate.getDate() + days - 1);
@@ -637,7 +569,6 @@ dateFrom.addEventListener("change", calculateEndDate);
 function switchExperience(type) {
   document.querySelectorAll(".exp-tab").forEach(t => t.classList.remove("active"));
   document.querySelectorAll(".exp-panel").forEach(p => p.classList.remove("active"));
-  
   if (type === "reviews") {
     document.querySelectorAll(".exp-tab")[0].classList.add("active");
     document.getElementById("exp-reviews").classList.add("active");
@@ -652,7 +583,6 @@ const bookedDates = ["2024-01-12", "2024-01-18", "2024-01-19", "2024-01-28"];
 const calendarGrid = document.getElementById("calendarGrid");
 const monthLabel = document.getElementById("monthYear");
 const now = new Date();
-
 monthLabel.textContent = now.toLocaleString("default", { month: "long", year: "numeric" });
 const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
 
@@ -661,16 +591,10 @@ for (let d = 1; d <= daysInMonth; d++) {
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(d).padStart(2, "0");
   const dateStr = `${now.getFullYear()}-${month}-${day}`;
-
   el.className = "calendar-day";
   el.textContent = d;
-
-  if (bookedDates.includes(dateStr)) {
-    el.classList.add("booked");
-    el.title = "Booked";
-  } else {
-    el.title = "Available";
-  }
+  if (bookedDates.includes(dateStr)) { el.classList.add("booked"); el.title = "Booked"; }
+  else { el.title = "Available"; }
   calendarGrid.appendChild(el);
 }
 
@@ -683,7 +607,6 @@ const observer = new IntersectionObserver((entries, obs) => {
     }
   });
 }, { threshold: 0.1 });
-
 document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
 </script>
 
