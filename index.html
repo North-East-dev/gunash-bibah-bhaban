@@ -11,18 +11,34 @@
 <style>
 /* ================= ROOT & RESET ================= */
 :root {
-  --primary: #5b2b82; --primary-light: #7a3fa8; --secondary: #d4af37;
-  --soft-bg: #faf8ff; --dark-bg: #2d143f; --text-main: #333;
+  --primary: #5b2b82;
+  --primary-light: #7a3fa8;
+  --secondary: #d4af37; /* Gold Accent */
+  --soft-bg: #faf8ff;
+  --dark-bg: #2d143f;
+  --text-main: #333;
   --shadow-soft: 0 20px 50px rgba(0,0,0,0.05);
+  --shadow-hover: 0 25px 60px rgba(91,43,130,0.25); /* Stronger Shadow */
 }
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; font-family: "Poppins", sans-serif; background: #fbf7fc; color: var(--text-main); overflow-x: hidden; }
-body.modal-open { overflow: hidden; }
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #fbf7fc, #ffffff);
+  color: var(--text-main);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+body.modal-open, body.menu-open { overflow: hidden; }
 
 /* ================= ANIMATIONS ================= */
 .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
+
 @keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
 
 /* ================= NAVBAR ================= */
@@ -30,10 +46,10 @@ body.modal-open { overflow: hidden; }
   position: sticky; top: 0; z-index: 1000;
   display: flex; justify-content: space-between; align-items: center;
   padding: 15px 5%; background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05);
+  backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: 0.3s;
 }
-.nav-brand { font-family: "Playfair Display"; font-size: clamp(20px, 4vw, 24px); font-weight: 700; color: var(--primary); text-decoration: none; z-index: 1002; }
+.nav-brand { font-family: "Playfair Display", serif; font-size: clamp(20px, 4vw, 24px); font-weight: 700; color: var(--primary); text-decoration: none; z-index: 1002; }
 .nav-links { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; align-items: center; }
 .nav-links a { text-decoration: none; color: #444; font-size: 14px; font-weight: 500; position: relative; transition: 0.3s; }
 .nav-links a::after { content: ""; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: var(--secondary); transition: 0.3s ease; }
@@ -42,13 +58,12 @@ body.modal-open { overflow: hidden; }
 .nav-cta {
   background: var(--primary); color: white; border: none; padding: 12px 28px;
   border-radius: 50px; cursor: pointer; font-family: inherit; font-weight: 500; transition: 0.3s;
-  box-shadow: 0 4px 15px rgba(91,43,130,0.2);
 }
-.nav-cta:hover { background: var(--primary-light); transform: translateY(-2px); }
+.nav-cta:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(91,43,130,0.3); }
 
 /* Hamburger */
 .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 1002; }
-.bar { width: 25px; height: 3px; background: var(--primary); transition: 0.3s; border-radius: 2px; }
+.bar { width: 25px; height: 3px; background: var(--primary); border-radius: 2px; transition: 0.3s; }
 @media(max-width: 900px) {
   .hamburger { display: flex; }
   .nav-links {
@@ -65,110 +80,160 @@ body.modal-open { overflow: hidden; }
   .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 }
 
-/* ================= HERO ================= */
+/* ================= HERO (UPDATED SPACING) ================= */
 header {
-  position: relative; height: 90vh; min-height: 500px;
+  position: relative; height: 90vh; min-height: 600px;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
   text-align: center; color: white; padding: 20px; overflow: hidden;
 }
 .hero-bg {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(rgba(45, 20, 63, 0.6), rgba(0, 0, 0, 0.4)), url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098");
-  background-size: cover; background-position: center; z-index: -1; animation: kenBurns 20s infinite alternate;
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(rgba(45, 20, 63, 0.65), rgba(0, 0, 0, 0.45)), url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098");
+  background-size: cover; background-position: center; animation: kenBurns 20s ease-out infinite alternate;
 }
-header h1 { font-family: "Playfair Display"; font-size: clamp(36px, 6vw, 60px); margin-bottom: 15px; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-header p { font-size: clamp(16px, 2vw, 18px); margin-bottom: 40px; opacity: 0.95; max-width: 600px; }
+/* Increased Margins for better spacing */
+header h1 {
+  font-family: "Playfair Display", serif; font-size: clamp(36px, 6vw, 64px); 
+  margin: 0 0 25px; text-shadow: 0 4px 15px rgba(0,0,0,0.4); line-height: 1.2;
+}
+header p { 
+  font-size: clamp(16px, 2vw, 20px); margin: 0 0 45px; opacity: 0.95; max-width: 650px; 
+}
+.hero-trust {
+  display: inline-block; font-size: 14px; letter-spacing: 0.5px;
+  background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+  padding: 10px 20px; border-radius: 30px; margin-bottom: 45px;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* ================= BUTTON (ENHANCED HOVER) ================= */
 .btn {
-  background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white;
-  padding: 16px 42px; border-radius: 50px; border: none; font-size: 16px; font-weight: 500; cursor: pointer;
-  transition: all 0.3s; box-shadow: 0 10px 30px rgba(91,43,130,0.3);
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white; padding: 18px 45px; border-radius: 50px; border: none;
+  font-size: 16px; font-weight: 500; cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+  box-shadow: 0 10px 25px rgba(91,43,130,0.3);
 }
-.btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 20px 40px rgba(91,43,130,0.4); }
+.btn:hover {
+  transform: translateY(-5px) scale(1.05); /* Lifts up and grows */
+  box-shadow: 0 20px 50px rgba(91,43,130,0.5); /* Strong Glow */
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+}
 .btn.disabled { opacity: 0.5; pointer-events: none; filter: grayscale(1); }
 
 /* ================= SECTIONS ================= */
-section { max-width: 1100px; margin: 80px auto; padding: 0 20px; }
-.section-card { background: white; padding: 60px 50px; border-radius: 30px; box-shadow: var(--shadow-soft); position: relative; overflow: hidden; }
-@media(max-width: 768px) { section { margin: 50px auto; } .section-card { padding: 40px 25px; } }
-h2 { font-family: "Playfair Display"; text-align: center; font-size: clamp(28px, 4vw, 36px); color: var(--primary); margin-bottom: 50px; position: relative; }
-h2::after { content: ""; display: block; width: 60px; height: 3px; background: var(--secondary); margin: 15px auto 0; }
+section { max-width: 1100px; margin: 90px auto; padding: 0 20px; }
+.section-card {
+  background: white; padding: 70px 50px; border-radius: 30px;
+  box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
+}
+@media(max-width: 768px) { section { margin: 60px auto; } .section-card { padding: 50px 25px; } }
 
-/* GRIDS */
+h2 {
+  font-family: "Playfair Display", serif; text-align: center;
+  font-size: clamp(28px, 4vw, 38px); color: var(--primary); margin-bottom: 50px; position: relative;
+}
+h2::after {
+  content: ""; display: block; width: 70px; height: 3px;
+  background: var(--secondary); margin: 15px auto 0;
+}
+
+/* ================= AMENITIES ================= */
 .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
 .box {
-  background: #fff; padding: 30px 25px; border-radius: 20px; text-align: center;
-  font-weight: 500; color: #555; border: 1px solid rgba(0,0,0,0.03); box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: 0.4s ease;
+  background: #fff; padding: 35px 25px; border-radius: 20px; text-align: center;
+  font-weight: 500; color: #555; border: 1px solid rgba(0,0,0,0.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: 0.4s ease;
 }
 .box:hover { transform: translateY(-8px); border-color: rgba(91,43,130,0.1); box-shadow: var(--shadow-hover); color: var(--primary); }
 
-/* TABS */
-.exp-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 50px; background: #f4eff9; width: fit-content; margin: 0 auto 50px; padding: 6px; border-radius: 50px; }
-.exp-tab { background: none; border: none; font-size: 15px; cursor: pointer; color: #666; padding: 10px 24px; border-radius: 40px; transition: 0.3s; }
+/* ================= EXPERIENCES & SLIDESHOW ================= */
+.exp-tabs {
+  display: flex; justify-content: center; gap: 15px; margin-bottom: 60px; 
+  background: #f4eff9; width: fit-content; margin-left: auto; margin-right: auto;
+  padding: 8px; border-radius: 50px;
+}
+.exp-tab { background: none; border: none; font-size: 15px; cursor: pointer; color: #666; padding: 10px 28px; border-radius: 40px; transition: 0.3s; }
 .exp-tab.active { background: white; color: var(--primary); font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-.exp-panel { display: none; animation: fadeIn 0.6s ease; } .exp-panel.active { display: block; }
+
+.exp-panel { display: none; animation: fadeIn 0.6s ease; }
+.exp-panel.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-/* CARDS */
-.reviews-mosaic, .events-grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.review-card { background: var(--soft-bg); padding: 30px; border-radius: 22px; font-size: 15px; font-style: italic; color: #555; transition: 0.4s; }
+/* REVIEWS */
+.reviews-mosaic { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+.review-card { background: var(--soft-bg); padding: 35px; border-radius: 22px; font-size: 15px; font-style: italic; color: #555; transition: 0.4s; }
 .review-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
 .review-card strong { display: block; margin-top: 20px; color: var(--primary); font-style: normal; font-size: 13px; font-weight: 600; text-transform: uppercase; }
-.event-card { border-radius: 22px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.4s; background: white; cursor: pointer; }
-.event-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
-.event-card img { width: 100%; height: 220px; object-fit: cover; transition: 0.5s; }
-.event-card:hover img { transform: scale(1.05); }
-.event-info { padding: 25px; }
 
-/* CALENDAR */
-.calendar-wrapper { max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); }
+/* SLIDESHOW STYLES (NEW) */
+.slideshow-container {
+  max-width: 800px; position: relative; margin: auto; border-radius: 25px; overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1); background: #000;
+}
+.mySlides { display: none; width: 100%; height: 400px; position: relative; }
+.mySlides img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+/* Fade Animation */
+.slide-fade { animation-name: fade; animation-duration: 2s; }
+@keyframes fade { from {opacity: .4} to {opacity: 1} }
+
+/* Caption */
+.slide-caption {
+  position: absolute; bottom: 0; left: 0; width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: #fff; padding: 30px 20px; text-align: center;
+  font-family: "Playfair Display"; font-size: 24px; letter-spacing: 1px;
+}
+
+/* Dots */
+.dot-container { text-align: center; margin-top: 20px; }
+.dot {
+  height: 10px; width: 10px; margin: 0 5px; background-color: #ddd;
+  border-radius: 50%; display: inline-block; transition: background-color 0.6s ease; cursor: pointer;
+}
+.dot.active { background-color: var(--primary); transform: scale(1.2); }
+
+@media(max-width:600px) { .mySlides { height: 250px; } .slide-caption { font-size: 18px; padding: 20px; } }
+
+/* ================= CALENDAR ================= */
+.calendar-wrapper { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); }
 .calendar-header { font-family: "Playfair Display"; font-size: 24px; margin-bottom: 25px; color: var(--primary); text-align: center; }
 .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
 .calendar-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 13px; background: #fbf9fd; transition: 0.3s; }
-.calendar-day:not(.booked):hover { background: var(--primary); color: white; transform: scale(1.1); cursor: pointer; }
+.calendar-day:not(.booked):hover { background: var(--primary); color: white; transform: scale(1.1); box-shadow: 0 8px 20px rgba(91,43,130,0.3); cursor: pointer; }
 .calendar-day.booked { background: #eee; color: #aaa; text-decoration: line-through; cursor: not-allowed; }
 
+/* ================= FOOTER ================= */
 footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #ccc; text-align: center; padding: 60px 20px; margin-top: 80px; }
 
 /* ================= MODAL ================= */
 .modal {
-  display: none; position: fixed; inset: 0; background: rgba(45, 20, 63, 0.85);
-  backdrop-filter: blur(8px); z-index: 2000; overflow-y: auto; padding: 10px;
+  display: none; position: fixed; inset: 0; background: rgba(45, 20, 63, 0.85); backdrop-filter: blur(8px); z-index: 2000; overflow-y: auto; padding: 10px;
   opacity: 0; transition: opacity 0.3s ease;
 }
 .modal.active { display: block; opacity: 1; }
-
 .modal-content {
-  background: white; max-width: 480px; width: 100%; margin: 5vh auto; padding: 35px;
-  border-radius: 26px; transform: translateY(20px);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+  background: white; max-width: 480px; width: 100%; margin: 5vh auto; padding: 40px; border-radius: 26px; transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 30px 60px rgba(0,0,0,0.3);
 }
-@media(max-width: 480px) { .modal-content { padding: 25px; margin: 10px auto; border-radius: 20px; } }
+@media(max-width: 480px) { .modal-content { padding: 30px; margin: 10px auto; border-radius: 20px; } }
 .modal.active .modal-content { transform: translateY(0); }
 
 .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-.modal-header h2 { margin: 0; font-size: 22px; color: var(--text-main); text-align: left; }
-
+.modal-header h2 { margin: 0; font-size: 24px; color: var(--text-main); text-align: left; font-family: "Playfair Display"; }
 .close-btn {
-  background: #f4f4f4; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 22px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; transition: 0.2s;
+  background: #f4f4f4; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;
 }
 .close-btn:hover { background: #ffebeb; color: #d32f2f; }
 
 .modal-label { font-size: 13px; font-weight: 600; color: #666; margin-bottom: 6px; display: block; }
 .modal-content input, .modal-content select, .modal-content textarea {
-  width: 100%; padding: 14px; margin-bottom: 18px; border-radius: 12px;
-  border: 2px solid #f0f0f0; font-family: inherit; font-size: 16px; background: #fdfdfd; transition: 0.3s;
+  width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 14px; border: 2px solid #f0f0f0; font-family: inherit; font-size: 16px; background: #fdfdfd; transition: 0.3s;
 }
 .modal-content input:focus { background: white; border-color: var(--primary); outline: none; box-shadow: 0 0 0 4px rgba(91,43,130,0.08); }
 
-/* SUCCESS BOX CENTERED */
-.success-box {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px 0;
-}
-.success-check {
-  font-size: 60px; color: #4CAF50; margin-bottom: 15px; animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
+.success-box { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px 0; }
+.success-check { font-size: 60px; color: #4CAF50; margin-bottom: 20px; animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
 @keyframes popIn { 0%{transform:scale(0);} 100%{transform:scale(1);} }
 </style>
 </head>
@@ -205,8 +270,9 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
 <section id="venue">
   <div class="section-card fade-up">
     <h2>Venue Overview</h2>
-    <p style="text-align:center; max-width:750px; margin:auto; font-size:17px; color:#555;">
+    <p style="text-align:center; max-width:750px; margin:auto; font-size:17px; color:#555; line-height: 1.8;">
       A premium venue crafted for refined celebrations, combining elegance, comfort, and thoughtful design.
+      Whether it is a grand wedding or an intimate reception, our space transforms to match your vision.
     </p>
   </div>
 </section>
@@ -230,10 +296,13 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
 <section id="experiences">
   <div class="section-card">
     <h2 class="fade-up">Experiences</h2>
+
     <div class="exp-tabs fade-up stagger-1">
       <button class="exp-tab active" onclick="switchExperience('reviews')">Guest Voices</button>
       <button class="exp-tab" onclick="switchExperience('events')">Past Events</button>
     </div>
+
+    <!-- Reviews -->
     <div id="exp-reviews" class="exp-panel active">
       <div class="reviews-mosaic">
         <div class="review-card large fade-up stagger-1">“The ambience felt refined and welcoming. The staff was incredibly helpful.”<strong>Wedding · 2024</strong></div>
@@ -242,16 +311,32 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
         <div class="review-card fade-up stagger-4">“Spacious and elegant hall.”<strong>Family Event · 2022</strong></div>
       </div>
     </div>
+
+    <!-- SLIDESHOW (Replaces Grid) -->
     <div id="exp-events" class="exp-panel">
-      <div class="events-grid">
-        <div class="event-card fade-up stagger-1">
-          <img src="https://images.unsplash.com/photo-1529634899401-3c3e5a0a9f1c" alt="Wedding">
-          <div class="event-info"><span>Wedding · Jan 2024</span>Floral theme setup.</div>
-        </div>
-        <div class="event-card fade-up stagger-2">
+      <div class="slideshow-container fade-up">
+        
+        <div class="mySlides slide-fade">
           <img src="https://images.unsplash.com/photo-1519225468359-2996bc140aaa" alt="Reception">
-          <div class="event-info"><span>Reception · Dec 2023</span>Golden hour lighting.</div>
+          <div class="slide-caption">Golden Hour Reception</div>
         </div>
+
+        <div class="mySlides slide-fade">
+          <img src="https://images.unsplash.com/photo-1529634899401-3c3e5a0a9f1c" alt="Wedding">
+          <div class="slide-caption">Classic Floral Wedding</div>
+        </div>
+
+        <div class="mySlides slide-fade">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b" alt="Haldi">
+          <div class="slide-caption">Traditional Haldi Ceremony</div>
+        </div>
+
+      </div>
+      
+      <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
       </div>
     </div>
   </div>
@@ -276,7 +361,9 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
   </div>
 </section>
 
-<footer>© 2026 Gunash Padmawati Bibha Bhaban · Crafted with Care</footer>
+<footer>
+  © 2026 Gunash Padmawati Bibha Bhaban · Crafted with Care
+</footer>
 
 <!-- MODAL -->
 <div id="bookingModal" class="modal">
@@ -286,9 +373,8 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
       <button class="close-btn" onclick="closeModal()">&times;</button>
     </div>
 
-    <!-- FORM WRAPPED PROPERLY FOR GOOGLE SHEETS -->
+    <!-- FORM -->
     <form id="enquiryForm" name="google-sheet">
-      <!-- Step 1 -->
       <div id="step1">
         <p style="color:#666; font-size:14px; margin-bottom:25px;">Please share your details to proceed.</p>
         <label class="modal-label">Full Name</label>
@@ -298,7 +384,6 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
         <button type="button" id="continueBtn" class="btn disabled" style="width:100%" onclick="goToStep2()">Continue to Dates</button>
       </div>
 
-      <!-- Step 2 -->
       <div id="step2" style="display:none;">
         <label class="modal-label">Duration</label>
         <select id="daysSelect" onchange="updateDateViews()">
@@ -308,12 +393,10 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
           <option value="4">4 Days</option>
           <option value="custom">Custom...</option>
         </select>
-        <!-- Hidden input to store final duration string -->
         <input type="hidden" name="Duration" id="hiddenDuration" value="1 Day">
 
         <div id="customDaysDiv" style="display:none;">
-          <label class="modal-label">Enter Number of Days</label>
-          <input type="number" id="customDaysInput" placeholder="e.g. 7" min="1" max="30">
+          <input type="number" id="customDaysInput" placeholder="Days" oninput="calculateEndDate()">
         </div>
 
         <div id="singleDate">
@@ -322,52 +405,42 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
         </div>
 
         <div id="rangeDate" style="display:none;">
-          <div style="display:flex; gap:15px;">
-            <div style="flex:1;"><label class="modal-label">Start Date</label><input type="date" id="dateFrom"></div>
-            <div style="flex:1;"><label class="modal-label">End Date</label><input type="date" id="dateTo" readonly style="background:#f0f0f0;"></div>
+          <div style="display:flex; gap:10px;">
+            <div style="flex:1;"><input type="date" id="dateFrom" onchange="calculateEndDate()"></div>
+            <div style="flex:1;"><input type="date" id="dateTo" readonly style="background:#f4f4f4;"></div>
           </div>
         </div>
-        <!-- Hidden input to store final date string -->
         <input type="hidden" name="Date" id="hiddenDate">
 
-        <label class="modal-label">Event Details (Optional)</label>
-        <textarea name="Details" placeholder="Type of event, expected guests..." rows="3"></textarea>
+        <label class="modal-label">Details</label>
+        <textarea name="Details" placeholder="Event details..." rows="3"></textarea>
         
         <div style="display:flex; gap:10px; margin-top:10px;">
            <button type="button" class="btn" onclick="backToStep1()" style="background:#eee; color:#333; flex:1;">Back</button>
-           <button type="submit" class="btn" id="submitBtn" style="flex:2;">Submit Enquiry</button>
+           <button type="submit" class="btn" id="submitBtn" style="flex:2;">Submit</button>
         </div>
       </div>
     </form>
 
-    <!-- Success -->
     <div id="successStep" style="display:none;" class="success-box">
       <div class="success-check">✔</div>
       <h2>Thank you!</h2>
-      <p>We have received your enquiry.</p>
-      <p style="font-size:14px; color:#555; margin-top:5px;">Our team will check the dates and reply via WhatsApp.</p>
+      <p style="margin-bottom:10px;">We have received your enquiry.</p>
+      <p style="font-size:14px; color:#555;">Our team will review your request and message you on WhatsApp shortly.</p>
       <button class="btn" onclick="closeModal()" style="margin-top:25px; min-width:150px;">Close</button>
     </div>
   </div>
 </div>
 
 <script>
-/* ================= CONFIGURATION ================= */
-const scriptURL = "PASTE_YOUR_URL_HERE";
+/* CONFIGURATION */
+const scriptURL = "https://script.google.com/macros/s/AKfycbyGsTQXMR6PyFdJnxvtVDh7QqI5tJSnAZ3s54t1zv48sGHr2mtoiutor46K88tzDjE/exec";
 
-/* ================= NAV LOGIC ================= */
-function toggleMenu(){
-  document.getElementById("navLinks").classList.toggle("active");
-  document.querySelector(".hamburger").classList.toggle("active");
-  document.body.classList.toggle("menu-open");
-}
-function closeMenu(){
-  document.getElementById("navLinks").classList.remove("active");
-  document.querySelector(".hamburger").classList.remove("active");
-  document.body.classList.remove("menu-open");
-}
+/* NAV & MENU */
+function toggleMenu(){ document.getElementById("navLinks").classList.toggle("active"); document.querySelector(".hamburger").classList.toggle("active"); document.body.classList.toggle("menu-open"); }
+function closeMenu(){ document.getElementById("navLinks").classList.remove("active"); document.querySelector(".hamburger").classList.remove("active"); document.body.classList.remove("menu-open"); }
 
-/* ================= MODAL LOGIC ================= */
+/* MODAL LOGIC */
 const bookingModal=document.getElementById("bookingModal");
 const step1=document.getElementById("step1");
 const step2=document.getElementById("step2");
@@ -398,14 +471,13 @@ function validateStep1(){
 function goToStep2(){ step1.style.display="none"; step2.style.display="block"; }
 function backToStep1(){ step1.style.display="block"; step2.style.display="none"; }
 
-/* ================= FORM SUBMIT ================= */
+/* FORM SUBMIT */
 const form = document.getElementById('enquiryForm');
 form.addEventListener('submit', e => {
   e.preventDefault();
   submitBtn.textContent = "Sending...";
   submitBtn.classList.add("disabled");
 
-  // Populate Hidden Fields for Google Sheet
   const isCustom = document.getElementById("daysSelect").value === 'custom';
   document.getElementById("hiddenDuration").value = isCustom ? document.getElementById("customDaysInput").value + " Days" : document.getElementById("daysSelect").value + " Days";
   
@@ -419,20 +491,19 @@ form.addEventListener('submit', e => {
   .then(response => {
     step2.style.display = "none";
     successStep.style.display = "flex"; // Flex ensures centering
-    submitBtn.textContent = "Submit Enquiry";
+    submitBtn.textContent = "Submit";
     submitBtn.classList.remove("disabled");
   })
   .catch(error => {
     console.error('Error!', error.message);
-    // Google scripts sometimes return error despite success due to CORS
     step2.style.display = "none";
     successStep.style.display = "flex";
-    submitBtn.textContent = "Submit Enquiry";
+    submitBtn.textContent = "Submit";
     submitBtn.classList.remove("disabled");
   });
 });
 
-/* ================= DATE LOGIC ================= */
+/* DATE LOGIC */
 const daysSelect=document.getElementById("daysSelect");
 const customDaysDiv=document.getElementById("customDaysDiv");
 const customDaysInput=document.getElementById("customDaysInput");
@@ -461,15 +532,42 @@ daysSelect.addEventListener("change",updateDateViews);
 customDaysInput.addEventListener("input",calculateEndDate);
 dateFrom.addEventListener("change",calculateEndDate);
 
-/* ================= TABS ================= */
+/* TABS */
 function switchExperience(type){
   document.querySelectorAll(".exp-tab").forEach(t=>t.classList.remove("active"));
   document.querySelectorAll(".exp-panel").forEach(p=>p.classList.remove("active"));
-  if(type==="reviews"){ document.querySelectorAll(".exp-tab")[0].classList.add("active"); document.getElementById("exp-reviews").classList.add("active"); }
-  else{ document.querySelectorAll(".exp-tab")[1].classList.add("active"); document.getElementById("exp-events").classList.add("active"); }
+  if(type==="reviews"){
+    document.querySelectorAll(".exp-tab")[0].classList.add("active");
+    document.getElementById("exp-reviews").classList.add("active");
+  }else{
+    document.querySelectorAll(".exp-tab")[1].classList.add("active");
+    document.getElementById("exp-events").classList.add("active");
+  }
 }
 
-/* ================= CALENDAR ================= */
+/* SLIDESHOW LOGIC */
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active", ""); }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 3500); // Change image every 3.5 seconds
+}
+
+function currentSlide(n) {
+  // Manual navigation logic could be added here if needed, 
+  // but auto-slideshow is usually sufficient.
+}
+
+/* CALENDAR */
 const grid=document.getElementById("calendarGrid");
 const now=new Date();
 document.getElementById("monthYear").textContent=now.toLocaleString("default",{month:"long",year:"numeric"});
@@ -482,7 +580,6 @@ for(let d=1;d<=days;d++){
   grid.appendChild(el);
 }
 
-/* ================= ANIMATION ================= */
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("visible")}),{threshold:0.1});
 document.querySelectorAll(".fade-up").forEach(el=>obs.observe(el));
 </script>
