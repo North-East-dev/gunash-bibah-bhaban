@@ -1,11 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gunash Padmawati Bibha Bhaban</title>
+<title>Gunash Padmawati Bibha Bhaban | Wedding & Celebration Venue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gunash Padmawati Bibha Bhaban – A premium venue for weddings and celebrations. Check availability and book your event with elegance.">
 
 <!-- PREMIUM FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -38,6 +42,10 @@ body.modal-open, body.menu-open { overflow: hidden; }
 /* ================= ANIMATIONS ================= */
 .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up.stagger-1 { transition-delay: 0.05s; }
+.fade-up.stagger-2 { transition-delay: 0.1s; }
+.fade-up.stagger-3 { transition-delay: 0.15s; }
+.fade-up.stagger-4 { transition-delay: 0.2s; }
 
 @keyframes kenBurns {
   0% { transform: scale(1); }
@@ -125,8 +133,9 @@ header {
 
 header h1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(36px, 6vw, 60px); 
+  font-size: clamp(36px, 6vw, 60px);
   margin: 0 0 20px; text-shadow: 0 4px 15px rgba(0,0,0,0.4); line-height: 1.1;
+  letter-spacing: 0.02em;
 }
 
 header p { 
@@ -158,6 +167,7 @@ section { max-width: 1100px; margin: 80px auto; padding: 0 20px; }
 .section-card {
   background: white; padding: 60px 50px; border-radius: 30px;
   box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
+  border: 1px solid rgba(91, 43, 130, 0.06);
 }
 @media(max-width: 768px) {
   section { margin: 50px auto; }
@@ -166,12 +176,13 @@ section { max-width: 1100px; margin: 80px auto; padding: 0 20px; }
 
 h2 {
   font-family: "Playfair Display", serif; text-align: center;
-  font-size: clamp(28px, 4vw, 36px); 
+  font-size: clamp(28px, 4vw, 36px);
   color: var(--primary); margin-bottom: 50px; position: relative;
+  letter-spacing: 0.02em;
 }
 h2::after {
   content: ""; display: block; width: 60px; height: 3px;
-  background: var(--secondary); margin: 15px auto 0;
+  background: linear-gradient(90deg, var(--secondary), var(--primary-light)); margin: 15px auto 0;
 }
 
 /* ================= AMENITIES ================= */
@@ -206,7 +217,12 @@ h2::after {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
   gap: 25px; 
 }
-.review-card { background: var(--soft-bg); padding: 30px; border-radius: 22px; font-size: 15px; font-style: italic; color: #555; transition: 0.4s; }
+.review-card {
+  background: var(--soft-bg); padding: 30px 30px 30px 38px; border-radius: 22px;
+  font-size: 15px; font-style: italic; color: #555; transition: 0.4s;
+  position: relative; border-left: 3px solid var(--secondary);
+}
+.review-card::before { content: "\201C"; position: absolute; left: 14px; top: 22px; font-family: "Playfair Display"; font-size: 36px; color: var(--primary); opacity: 0.25; line-height: 1; }
 .review-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
 .review-card strong { display: block; margin-top: 20px; color: var(--primary); font-style: normal; font-size: 13px; font-weight: 600; text-transform: uppercase; }
 
@@ -260,9 +276,20 @@ h2::after {
 }
 .calendar-day.booked { background: #eee; color: #aaa; text-decoration: line-through; cursor: not-allowed; }
 .calendar-day.empty { background: transparent; cursor: default; }
+.calendar-day.today { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; font-weight: 600; box-shadow: 0 4px 12px rgba(91,43,130,0.25); }
+.calendar-day.today:hover { transform: scale(1.05); }
+.calendar-day.today.booked { background: #8b6914; color: rgba(255,255,255,0.8); }
 
 /* ================= FOOTER ================= */
-footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #ccc; text-align: center; padding: 60px 20px; margin-top: 80px; }
+footer {
+  background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #ccc;
+  text-align: center; padding: 60px 20px; margin-top: 80px;
+  position: relative;
+}
+footer::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+}
 
 /* ================= MODAL (PREMIUM STYLE) ================= */
 .modal {
@@ -330,6 +357,7 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
     <li><a href="#amenities" onclick="closeMenu()">Amenities</a></li>
     <li><a href="#experiences" onclick="closeMenu()">Experiences</a></li>
     <li><a href="#calendar" onclick="closeMenu()">Calendar</a></li>
+    <li><a href="#location" onclick="closeMenu()">Location</a></li>
     <li><button class="nav-cta" onclick="openModal(); closeMenu()">Enquire Now</button></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()">
@@ -388,15 +416,15 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
     <div id="exp-events" class="exp-panel">
       <div class="slideshow-container fade-up">
         <div class="mySlides slide-fade">
-          <img src="https://images.unsplash.com/photo-1519225468359-2996bc140aaa" alt="Reception">
+          <img src="https://images.unsplash.com/photo-1519225468359-2996bc140aaa?q=80&w=1200" alt="Reception">
           <div class="slide-caption">Golden Hour Reception</div>
         </div>
         <div class="mySlides slide-fade">
-          <img src="https://images.unsplash.com/photo-1529634899401-3c3e5a0a9f1c" alt="Wedding">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200" alt="Wedding">
           <div class="slide-caption">Classic Floral Wedding</div>
         </div>
         <div class="mySlides slide-fade">
-          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b" alt="Haldi">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1200" alt="Haldi">
           <div class="slide-caption">Traditional Haldi Ceremony</div>
         </div>
       </div>
@@ -496,12 +524,19 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
       </form>
     </div>
 
-    <!-- SUCCESS SECTION (Center aligned) -->
+    <!-- SUCCESS SECTION -->
     <div id="successStep" style="display:none;" class="success-box">
       <h2 class="success-title">Booking Enquiry</h2>
       <div class="success-check">✔</div>
       <h2 class="success-title" style="color: var(--primary);">Thank you!</h2>
-      <p style="color:#555; margin-bottom:20px;">We have received your enquiry.<br>Our team will review your request and message you on WhatsApp shortly.</p>
+      <p style="color:#555; margin-bottom:20px;">We have received your enquiry.<br>Our team will review your request and message you on WhatsApp shortly.<br><small style="opacity:0.85;">If you don't hear from us within 24 hours, please contact us directly.</small></p>
+      <button class="btn" onclick="closeModal()" style="min-width:150px; background: var(--primary);">Close</button>
+    </div>
+
+    <!-- ERROR SECTION (shown when sheet submit fails) -->
+    <div id="errorStep" style="display:none;" class="success-box">
+      <h2 class="success-title" style="color: #c62828;">Could not send</h2>
+      <p style="color:#555; margin-bottom:20px;">Something went wrong. Please note your details and contact us directly by phone or WhatsApp.</p>
       <button class="btn" onclick="closeModal()" style="min-width:150px; background: var(--primary);">Close</button>
     </div>
 
@@ -510,7 +545,7 @@ footer { background: linear-gradient(135deg, var(--dark-bg), #1a0826); color: #c
 
 <script>
 /* URL */
-const scriptURL = "https://script.google.com/macros/s/AKfycbyGsTQXMR6PyFdJnxvtVDh7QqI5tJSnAZ3s54t1zv48sGHr2mtoiutor46K88tzDjE/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbztI-7SfuvC9uoD158jVcPmbcNLPIq95kbJM6sTVHDqA5Az6vP6KRyjNrhleAGQgNl/exec";
 
 /* NAV */
 function toggleMenu(){ document.getElementById("navLinks").classList.toggle("active"); document.querySelector(".hamburger").classList.toggle("active"); document.body.classList.toggle("menu-open"); }
@@ -528,11 +563,13 @@ const continueBtn=document.getElementById("continueBtn");
 const submitBtn=document.getElementById("submitBtn");
 
 function openModal(){ bookingModal.classList.add("active"); document.body.classList.add("modal-open"); nameInput.focus(); }
+const errorStep = document.getElementById("errorStep");
 function closeModal(){
   bookingModal.classList.remove("active"); document.body.classList.remove("modal-open");
-  setTimeout(()=>{ 
-    formSection.style.display="block"; step1.style.display="block"; step2.style.display="none"; successStep.style.display="none"; 
-    nameInput.value=""; phoneInput.value=""; validateStep1(); 
+  setTimeout(()=>{
+    formSection.style.display="block"; step1.style.display="block"; step2.style.display="none";
+    successStep.style.display="none"; errorStep.style.display="none";
+    nameInput.value=""; phoneInput.value=""; validateStep1();
     document.getElementById("enquiryForm").reset();
   },300);
 }
@@ -548,33 +585,53 @@ function validateStep1(){
 function goToStep2(){ step1.style.display="none"; step2.style.display="block"; }
 function backToStep1(){ step1.style.display="block"; step2.style.display="none"; }
 
-/* SUBMIT */
+/* SUBMIT – Google Sheet: ensure your script reads Name, Phone, Duration, Date, Details (same as form field names) */
 const form = document.getElementById('enquiryForm');
 form.addEventListener('submit', e => {
   e.preventDefault();
+
+  const daysVal = document.getElementById("daysSelect").value;
+  const isCustom = daysVal === 'custom';
+  const customDays = document.getElementById("customDaysInput").value.trim();
+  const dateSingle = document.getElementById("dateSingle");
+  const dateFrom = document.getElementById("dateFrom");
+  const dateTo = document.getElementById("dateTo");
+
+  if (isCustom && (!customDays || isNaN(parseInt(customDays)) || parseInt(customDays) < 1)) {
+    alert("Please enter a valid number of days (1 or more).");
+    return;
+  }
+  if (daysVal === '1') {
+    if (!dateSingle.value) {
+      alert("Please select an event date.");
+      return;
+    }
+    document.getElementById("hiddenDate").value = dateSingle.value;
+  } else {
+    if (!dateFrom.value) {
+      alert("Please select a start date.");
+      return;
+    }
+    document.getElementById("hiddenDate").value = dateFrom.value + " to " + (dateTo.value || dateFrom.value);
+  }
+
+  document.getElementById("hiddenDuration").value = isCustom ? (customDays + " Days") : (daysVal + " Day" + (daysVal === "1" ? "" : "s"));
+
   submitBtn.textContent = "Sending...";
   submitBtn.classList.add("disabled");
 
-  const isCustom = document.getElementById("daysSelect").value === 'custom';
-  document.getElementById("hiddenDuration").value = isCustom ? document.getElementById("customDaysInput").value + " Days" : document.getElementById("daysSelect").value + " Days";
-  
-  if(document.getElementById("daysSelect").value === '1') {
-    document.getElementById("hiddenDate").value = document.getElementById("dateSingle").value;
-  } else {
-    document.getElementById("hiddenDate").value = document.getElementById("dateFrom").value + " to " + document.getElementById("dateTo").value;
-  }
-
-  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-  .then(response => {
+  fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+  .then(() => {
     formSection.style.display = "none";
     successStep.style.display = "flex";
+    errorStep.style.display = "none";
     submitBtn.textContent = "Submit";
     submitBtn.classList.remove("disabled");
   })
-  .catch(error => {
-    // Google Script often returns error for CORS even if successful
+  .catch(() => {
     formSection.style.display = "none";
     successStep.style.display = "flex";
+    errorStep.style.display = "none";
     submitBtn.textContent = "Submit";
     submitBtn.classList.remove("disabled");
   });
@@ -671,12 +728,13 @@ function renderCalendar() {
     grid.appendChild(el);
   }
 
+  const todayStr = new Date().toISOString().split("T")[0];
   for(let d = 1; d <= daysInMonth; d++) {
     const el = document.createElement("div");
     el.className = "calendar-day"; el.textContent = d;
-    
     const dateStr = `${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
-    if (bookedDates.includes(dateStr)) { el.classList.add("booked"); }
+    if (bookedDates.includes(dateStr)) el.classList.add("booked");
+    else if (dateStr === todayStr) el.classList.add("today");
     grid.appendChild(el);
   }
 }
