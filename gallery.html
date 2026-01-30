@@ -32,7 +32,6 @@ body { margin: 0; font-family: "Poppins", sans-serif; background: #fbf7fc; color
 .gallery-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
 .gallery-grid {
   display: grid; gap: 20px;
-  /* Responsive Columns: 1 on mobile, 2 on tablet, 3 on desktop */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
@@ -53,9 +52,105 @@ body { margin: 0; font-family: "Poppins", sans-serif; background: #fbf7fc; color
 
 /* MOBILE TWEAKS */
 @media(max-width: 600px) {
-  .gallery-grid { grid-template-columns: 1fr; } /* 1 Column on mobile */
+  .gallery-grid { grid-template-columns: 1fr; }
   .gallery-item { height: 250px; }
-  .overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); } /* Always show text on mobile */
+  .overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
+}
+
+/* ================= LIGHTBOX ================= */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.lightbox.active {
+  display: flex;
+  opacity: 1;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 95vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.lightbox-caption {
+  color: #fff;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(18px, 3vw, 24px);
+  margin-top: 15px;
+  text-align: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+  line-height: 1;
+}
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.15);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255,255,255,0.3);
+}
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+@media(max-width: 600px) {
+  .lightbox-prev { left: 10px; width: 40px; height: 40px; font-size: 20px; }
+  .lightbox-next { right: 10px; width: 40px; height: 40px; font-size: 20px; }
+  .lightbox-close { top: -40px; right: 50%; transform: translateX(50%); }
 }
 
 footer { text-align: center; padding: 40px; color: #777; font-size: 13px; margin-top: 40px; }
@@ -75,34 +170,102 @@ footer { text-align: center; padding: 40px; color: #777; font-size: 13px; margin
 
 <div class="gallery-container">
   <div class="gallery-grid">
-    <div class="gallery-item">
+    <div class="gallery-item" data-src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200" data-caption="Floral Decor">
       <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600" alt="Decor">
       <div class="overlay">Floral Decor</div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200" data-caption="Grand Entrance">
       <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=600" alt="Entrance">
       <div class="overlay">Grand Entrance</div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1200" data-caption="Seating Area">
       <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600" alt="Seating">
       <div class="overlay">Seating Area</div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-src="https://images.unsplash.com/photo-1507915977619-6ccfe8003ae6?q=80&w=1200" data-caption="Main Stage">
       <img src="https://images.unsplash.com/photo-1507915977619-6ccfe8003ae6?q=80&w=600" alt="Stage">
       <div class="overlay">Main Stage</div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-src="https://images.unsplash.com/photo-1464366400600-7168b8af0bc3?q=80&w=1200" data-caption="Fine Dining">
       <img src="https://images.unsplash.com/photo-1464366400600-7168b8af0bc3?q=80&w=600" alt="Dining">
       <div class="overlay">Fine Dining</div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=1200" data-caption="Ambient Lighting">
       <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=600" alt="Lighting">
       <div class="overlay">Ambient Lighting</div>
     </div>
   </div>
 </div>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" onclick="closeLightboxOnBackdrop(event)">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" onclick="event.stopPropagation(); prevImage()" aria-label="Previous">&#10094;</button>
+  <div class="lightbox-content" onclick="event.stopPropagation()">
+    <img id="lightbox-img" src="" alt="">
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+  <button class="lightbox-next" onclick="event.stopPropagation(); nextImage()" aria-label="Next">&#10095;</button>
+</div>
+
 <footer>© 2026 Gunash Padmawati Bibha Bhaban</footer>
+
+<script>
+(function() {
+  const items = document.querySelectorAll('.gallery-item');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const item = items[index];
+    const src = item.getAttribute('data-src') || item.querySelector('img').src;
+    const caption = item.getAttribute('data-caption') || item.querySelector('.overlay').textContent;
+    lightboxImg.src = src;
+    lightboxImg.alt = caption;
+    lightboxCaption.textContent = caption;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOnBackdrop(e) {
+    if (e.target === lightbox) closeLightbox();
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    openLightbox(currentIndex);
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % items.length;
+    openLightbox(currentIndex);
+  }
+
+  items.forEach(function(item, index) {
+    item.addEventListener('click', function() { openLightbox(index); });
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'ArrowRight') nextImage();
+  });
+
+  window.closeLightbox = closeLightbox;
+  window.closeLightboxOnBackdrop = closeLightboxOnBackdrop;
+  window.prevImage = prevImage;
+  window.nextImage = nextImage;
+})();
+</script>
 
 </body>
 </html>
