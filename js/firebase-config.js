@@ -7,7 +7,16 @@
 
 // If this remains null, the site will just read from content.json (Static Mode).
 
-const FIREBASE_CONFIG = null;
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDJvHiVf_qcw8O2WDDsFpWjC8NJLrgTqto",
+  authDomain: "gpbb-7838c.firebaseapp.com",
+  databaseURL: "https://gpbb-7838c-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "gpbb-7838c",
+  storageBucket: "gpbb-7838c.firebasestorage.app",
+  messagingSenderId: "578970150197",
+  appId: "1:578970150197:web:8eee2fb8877c241c14987c",
+  measurementId: "G-6HK5WZQ0PH"
+};
 
 /* EXAMPLE:
 const FIREBASE_CONFIG = {
