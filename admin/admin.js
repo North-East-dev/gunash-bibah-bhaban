@@ -3,7 +3,7 @@
 
 // Auth State
 let isAuthenticated = sessionStorage.getItem('adminAuth') === 'true';
-const ADMIN_PASS = 'admin123'; // Simple protection as requested
+const ADMIN_PASS = 'Mriganav10@'; // Simple protection as requested
 
 // Current Content State
 let currentContent = {};
